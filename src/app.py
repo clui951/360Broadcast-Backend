@@ -1,11 +1,12 @@
 ### Main App ###
 import os
 from flask import Flask
+import contact_book
 
 
 app = Flask(__name__)
 
-
+cb = contact_book.ContactBook()
 
 
 ################### Routes #####################
