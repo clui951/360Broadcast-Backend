@@ -1,6 +1,6 @@
 ### Main App ###
 import os
-from flask import Flask
+from flask import Flask, render_template
 import contact_book
 
 
@@ -13,7 +13,7 @@ cb = contact_book.ContactBook()
 
 @app.route("/")
 def root_page():
-	return '360 Broadcast Backend Landing Page\n' + 'If you are a user, you should not be seeing this!'
+	return render_template('root_view.html'), 403
 
 
 @app.route("api/v1/text911")
