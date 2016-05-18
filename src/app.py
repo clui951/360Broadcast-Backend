@@ -26,6 +26,9 @@ def call911():
 	return 'Called 911; texting info to all contacts'
 
 
+@app.route("api/v1/update")
+def updateCB():
+	return "Endpoint for updating cb"
 
 
 
