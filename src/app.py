@@ -19,7 +19,12 @@ def root_page():
 
 @app.route("api/v1/text911")
 def text911():
-	return 'Texted 911; forwarding content to all contacts'
+	num, msg = extract_sanitize_911text()
+	if num == None or msg == None:
+		# send return text saying failed
+	else:
+		# forward msg to all contacts & 911
+	pass
 
 
 @app.route("api/v1/call911")
@@ -35,7 +40,15 @@ def updateCB():
 
 ################### Actions #####################
 
-def extract_and_sanitize_num():
+def extract_sanitize_911text():
+	num = extract_sanitize_911text_num()
+	msg = extract_sanitize_911text_msg()
+	if num == None or msg == None:
+		return None, None
+	else:
+		return num, msg
+
+def extract_sanitize_911text_num():
 	numArg = request.args.get('number')
 	num = sanitize.sanitize_num(numArg)	
 	if num == None:
@@ -43,7 +56,7 @@ def extract_and_sanitize_num():
 	else:
 		return num
 
-def extract_and_sanitize_arg():
+def extract_sanitize_911text_msg():
 	msgArg = request.args.get('message')
 	msg = sanitize.sanitize_msg(msgArg)
 	if msg == None:

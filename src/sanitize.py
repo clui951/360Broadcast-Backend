@@ -14,7 +14,6 @@ def sanitize_num(num):
 
 
 def sanitize_msg(msg):
-	msg = cgi.escape(msg)
 	return msg
 
 
