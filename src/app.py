@@ -1,7 +1,8 @@
 ### Main App ###
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import contact_book
+import sanitize
 
 
 app = Flask(__name__)
@@ -31,6 +32,24 @@ def updateCB():
 	return "Endpoint for updating cb"
 
 
+
+################### Actions #####################
+
+def extract_and_sanitize_num():
+	numArg = request.args.get('number')
+	num = sanitize.sanitize_num(numArg)	
+	if num == None:
+		return None
+	else:
+		return num
+
+def extract_and_sanitize_arg():
+	msgArg = request.args.get('message')
+	msg = sanitize.sanitize_msg(msgArg)
+	if msg == None:
+		return None
+	else:
+		return None
 
 ################### Start Server #####################
 
